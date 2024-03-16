@@ -8,6 +8,14 @@ class MapPlace(db.Model):
     location_lat = db.Column(db.Float(24))
     address = db.Column(db.String(40))
 
+    def __init__(self, name, description, lon, lat, address):
+        self.name = name
+        self.description = description
+        self.location_lon = lon
+        self.location_lat = lat
+        self.address = address
+
+
     def serialize(self):
         return{
             'id' : self.id,

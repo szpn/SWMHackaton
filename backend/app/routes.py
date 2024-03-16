@@ -26,16 +26,17 @@ def get_place(place_id=None):
 @api.route('/add_place/', methods=['POST'])
 def add_place():
     data = request.get_json()
-    print(data)
     name = data['name']
     description = data['description']
-    location_lat = data['lat']
-    location_lon = data['lon']
+    location_lat = data['location_lat']
+    location_lon = data['location_lon']
     address = data['address']
 
     new_place = MapPlace(name, description, location_lat, location_lon, address)
     db.session.add(new_place)
     db.session.commit()
+
+    return jsonify({"msg": "place added"}), 200
 
 
 
