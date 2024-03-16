@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import DetailsCard from './components/Details';
+import React, { useState, useEffect } from 'react';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const url = "http://192.168.123.92:5000/place/3/";
+    const [data, setData] = useState(null);
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+          setData(data);
+        } catch (error) {
+          console.error("Error fetching data: ", error);
+        }
+      };
+  
+      fetchData(); 
+    }, [url]); 
+  return data ? (
+    <DetailsCard name={data['name']} description={data['short_description']}
+     address="Kraków" link={data['contact_link']} phone={data['contact_phone']}/>
+  ):(
+    <p>Błąd wczytywania danych</p>
   );
 }
 
