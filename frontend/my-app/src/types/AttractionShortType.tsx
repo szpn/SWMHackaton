@@ -5,5 +5,5 @@ export type AttractionShortType = {
     location_lon: number
     name: string,
     short_description: string,
-    type : string
+    type_name : string
 }
