@@ -56,6 +56,7 @@ const cols : GridColDef[] = [
 const availableTypes : string[] = Array.from(new Set(data.map(e => e.type)))
 
 export default function AttractionsList(){
+    // const [data, setData] = useState<AttractionShortType | null>(null);
     const [category, setCategory] = useState<string | null>('All')
     const [name, setName] = useState<string | null>(null)
     const rows = data.filter(e => (e.type == category || category == 'All') && (name == null || e.name == name))
@@ -77,7 +78,7 @@ export default function AttractionsList(){
                             value = {name}
                             renderInput = {(params) => <TextField {...params} label = "Name"/>}
                             onChange={(event: any, newValue: string | null) => {
-                                setName(newValue);
+                                setName (newValue);
                             }}
                         />
 

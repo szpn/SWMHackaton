@@ -1,17 +1,16 @@
 import './App.css';
 import AttractionsList from './components/AttractionsList';
-import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
   useParams,
 } from "react-router-dom";
-import TopBar from './components/TopBar';
 import React from 'react';
+import DetailsCard from './components/Details';
 
 const Place = () => {
   const { id } = useParams();
-  return <TopBar id={id} />;
+  return <DetailsCard id={id} />;
 };
 
 const router = createBrowserRouter([

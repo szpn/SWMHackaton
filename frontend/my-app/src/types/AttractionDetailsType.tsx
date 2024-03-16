@@ -7,5 +7,6 @@ export type AttractionDetailsType = {
     location_lon: number
     long_description: string,
     name: string,
-    short_description: string
+    short_description: string,
+    average_rating: number
 }
