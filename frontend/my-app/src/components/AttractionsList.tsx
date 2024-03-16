@@ -5,13 +5,14 @@ import { Autocomplete, MenuItem, Select, Stack, TextField } from "@mui/material"
 import AddPlaceForm from "./AddPlaceForm";
 import ResponsiveAppBar from "./TopBar";
 import { Link } from "react-router-dom";
+import MakeMap from "./MakeMap";
 
 const cols : GridColDef[] = [
     {
         field: 'name',
         headerName: 'Name',
         type: 'string',
-        width: 250,
+        width: 200,
         renderCell: (params) => (
             <Link to={`/place/${params.row.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 {params.value}
@@ -22,13 +23,13 @@ const cols : GridColDef[] = [
         field: 'address',
         headerName: 'Address',
         type: "string",
-        width: 400,
+        width: 300,
     },
     {
         field: 'short_description',
         headerName: 'Description',
         type: 'string',
-        width: 500,
+        width: 400,
     },
     {
         field: 'type_name',
@@ -72,6 +73,7 @@ export default function AttractionsList(){
             }}>
                 <div style={{ width: '60%' }}>
                     <Stack spacing = {4}>
+                        <MakeMap />
                         <Stack direction = "row" spacing = {2}>
                             <Autocomplete
                                 sx={{width: "50%"}}
@@ -110,7 +112,7 @@ export default function AttractionsList(){
                             disableRowSelectionOnClick
                         />
                         <AddPlaceForm />
-                        <img src = "https://media.discordapp.net/attachments/1120592308816072764/1218619692118179890/image.png?ex=66085307&is=65f5de07&hm=0a1fcac27da3728cb856973593da3702a4f2053baa03d7cd71dc29cdb95c8b59&=&format=webp&quality=lossless&width=1128&height=676" />
+                        {/* <img src = "https://media.discordapp.net/attachments/1120592308816072764/1218619692118179890/image.png?ex=66085307&is=65f5de07&hm=0a1fcac27da3728cb856973593da3702a4f2053baa03d7cd71dc29cdb95c8b59&=&format=webp&quality=lossless&width=1128&height=676" /> */}
                     </Stack>
                 </div>
             </div>
