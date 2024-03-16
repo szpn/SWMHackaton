@@ -1,15 +1,19 @@
+import * as React from 'react';
 import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { AttractionDetailsType } from '../types/AttractionDetailsType';
+import ResponsiveAppBar from './TopBar';
 
 
 export default function DetailsCard(params: {id? : string}) {
-  const [value, setValue] = useState<number | null>();
+  const [value, setValue] = useState<number>();
   const url = `http://192.168.123.92:5000/place/${params.id}/`;
   const [data, setData] = useState<AttractionDetailsType | null>(null);
   const [name, setName] = useState<string | null>('');
@@ -18,6 +22,7 @@ export default function DetailsCard(params: {id? : string}) {
   const [contact_link, setContactLink] = useState<string>('')
   const [contact_phone, setContactPhone] = useState<string>('')
   const [rated, setRated] = useState<boolean>(false)
+  const [img, setImg] = useState<string>('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +36,7 @@ export default function DetailsCard(params: {id? : string}) {
         setContactLink(data['contact_link'])
         setContactPhone(data['contact_phone'])
         setValue(data['average_rating'])
+        setImg(data['image_url'])
         console.log(data)
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -40,15 +46,16 @@ export default function DetailsCard(params: {id? : string}) {
     fetchData(); 
   }, [url]); 
     return <>
+      <ResponsiveAppBar />
       {data && value !== null && (
-        <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" height="80%">
+        <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" height="60%">
           <Card sx={{ width: '60%', maxWidth: '80%', height: '80%', display: 'flex', flexDirection: 'row' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%'}}>
               <CardMedia
                 component="img"
                 alt="green iguana"
-                height="300"
-                image="https://upload.wikimedia.org/wikipedia/commons/1/16/Donner_Kebab%2C_Cologne%2C_Germany_%281057919169%29.jpg"
+                height="50%"
+                image={img}
               />
               <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>

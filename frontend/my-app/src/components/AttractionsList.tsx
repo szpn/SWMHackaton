@@ -2,14 +2,21 @@ import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid"
 import { AttractionShortType } from "../types/AttractionShortType"
 import { useEffect, useState } from "react";
 import { Autocomplete, MenuItem, Select, Stack, TextField } from "@mui/material";
-import AddPlaceForm from "./form";
+import AddPlaceForm from "./AddPlaceForm";
+import ResponsiveAppBar from "./TopBar";
+import { Link } from "react-router-dom";
 
 const cols : GridColDef[] = [
     {
         field: 'name',
         headerName: 'Name',
-        type: "string",
+        type: 'string',
         width: 250,
+        renderCell: (params) => (
+            <Link to={`/place/${params.row.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                {params.value}
+            </Link>
+        ),
     },
     {
         field: 'address',
@@ -56,6 +63,7 @@ export default function AttractionsList(){
         fetchData(); 
     }, [url]); 
         return <>
+            <ResponsiveAppBar />
             <div style={{
                 display: 'flex',
                 justifyContent: 'center',
