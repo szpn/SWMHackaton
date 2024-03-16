@@ -8,5 +8,6 @@ export type AttractionDetailsType = {
     long_description: string,
     name: string,
     short_description: string,
-    average_rating: number
+    average_rating: number,
+    imageLink : string
 }

@@ -1,6 +1,6 @@
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid"
 import { AttractionShortType } from "../types/AttractionShortType"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Autocomplete, MenuItem, Select, Stack, TextField } from "@mui/material";
 
 
@@ -31,19 +31,19 @@ const cols : GridColDef[] = [
         field: 'name',
         headerName: 'Name',
         type: "string",
-        width: 200,
+        width: 250,
     },
     {
         field: 'address',
         headerName: 'Address',
         type: "string",
-        width: 300,
+        width: 400,
     },
     {
         field: 'short_description',
         headerName: 'Description',
         type: 'string',
-        width: 200,
+        width: 500,
     },
     {
         field: 'type',
@@ -56,7 +56,8 @@ const cols : GridColDef[] = [
 const availableTypes : string[] = Array.from(new Set(data.map(e => e.type)))
 
 export default function AttractionsList(){
-    // const [data, setData] = useState<AttractionShortType | null>(null);
+    const url = `http://192.168.123.92:5000/place/`;
+    const [data, setData] = useState<AttractionShortType[]>([]);
     const [category, setCategory] = useState<string | null>('All')
     const [name, setName] = useState<string | null>(null)
     const rows = data.filter(e => (e.type == category || category == 'All') && (name == null || e.name == name))
