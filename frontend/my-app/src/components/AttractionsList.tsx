@@ -110,6 +110,7 @@ export default function AttractionsList(){
                             disableRowSelectionOnClick
                         />
                         <AddPlaceForm />
+                        <img src = "https://media.discordapp.net/attachments/1120592308816072764/1218619692118179890/image.png?ex=66085307&is=65f5de07&hm=0a1fcac27da3728cb856973593da3702a4f2053baa03d7cd71dc29cdb95c8b59&=&format=webp&quality=lossless&width=1128&height=676" />
                     </Stack>
                 </div>
             </div>
