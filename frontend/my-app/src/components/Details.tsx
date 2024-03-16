@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { Box } from '@mui/material';
 
-export default function DetailsCard(params: { name: string, description: string, address: string, link: string, phone: string }) {
-  const [value, setValue] = React.useState<number | null>(2);
+export default function DetailsCard(params: { name: string, description: string, address: string, link: string, phone: string, rate: number }) {
+  const [value, setValue] = React.useState<number | null>(params.rate);
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" height="80%">
