@@ -10,7 +10,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import logo from '../logo.jpg'
 
 
-function ResponsiveAppBar() {
+function TopBar() {
 
   return (
     <AppBar position="sticky" sx={{ bgcolor: 'black' }} >
