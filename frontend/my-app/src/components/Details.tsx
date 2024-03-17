@@ -1,9 +1,6 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 import { Box } from '@mui/material';
@@ -12,7 +9,7 @@ import { AttractionDetailsType } from '../types/AttractionDetailsType';
 import ResponsiveAppBar from './TopBar';
 
 
-export default function DetailsCard(params: {id? : string}) {
+export default function DetailsCard(params: { id?: string }) {
   const [value, setValue] = useState<number>();
   const url = `http://192.168.123.92:5000/place/${params.id}/`;
   const [data, setData] = useState<AttractionDetailsType | null>(null);
@@ -43,65 +40,65 @@ export default function DetailsCard(params: {id? : string}) {
       }
     };
 
-    fetchData(); 
-  }, [url]); 
-    return <>
-      <ResponsiveAppBar />
-      {data && value !== null && (
-        <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" height="60%">
-          <Card sx={{ width: '60%', maxWidth: '80%', height: '80%', display: 'flex', flexDirection: 'row' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%'}}>
-              <CardMedia
-                component="img"
-                alt="green iguana"
-                height="50%"
-                image={img}
-              />
-              <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {long_description}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Telefon kontaktowy: {contact_phone}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Adres: {address}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Strona internetowa: <a href={contact_link} target="_blank" rel="noopener noreferrer">{contact_link}</a>
-                  </Typography>
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', mr: 2 }}>
-                  <Typography component="legend">Ocena</Typography>
-                  <Rating
-                    precision={0.1}
-                    name="simple-controlled"
-                    value={value}
-                    disabled = {rated}
-                    onChange={(event, newValue) => {
-                      const requestOptions = {
-                        method: 'POST',
-                        headers: {'Content-Type' : 'application/json'},
-                        body: JSON.stringify({"place_id" : params.id, "rating" : newValue})
-                      };
-                      fetch('http://192.168.123.92:5000/add_rating/', requestOptions)
+    fetchData();
+  }, [url]);
+  return <>
+    <ResponsiveAppBar />
+    {data && value !== null && (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" height="60%">
+        <Card sx={{ width: '60%', maxWidth: '80%', height: '80%', display: 'flex', flexDirection: 'row' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <CardMedia
+              component="img"
+              alt="green iguana"
+              height="50%"
+              image={img}
+            />
+            <CardContent sx={{ flex: '1 0 auto', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  {name}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {long_description}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Telefon kontaktowy: {contact_phone}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Adres: {address}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Strona internetowa: <a href={contact_link} target="_blank" rel="noopener noreferrer">{contact_link}</a>
+                </Typography>
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', mr: 2 }}>
+                <Typography component="legend">Ocena</Typography>
+                <Rating
+                  precision={0.1}
+                  name="simple-controlled"
+                  value={value}
+                  disabled={rated}
+                  onChange={(event, newValue) => {
+                    const requestOptions = {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ "place_id": params.id, "rating": newValue })
+                    };
+                    fetch('http://192.168.123.92:5000/add_rating/', requestOptions)
                       .then(response => response.json())
                       .then(data => {
                         setValue(data['avg_rating'])
                         setRated(true)
                       })
                       .catch(err => console.log(err))
-                    }}
-                  />
-                </Box>
-              </CardContent>
-            </Box>
-          </Card>
-        </Box>
-      )}
-    </>;
-  }
+                  }}
+                />
+              </Box>
+            </CardContent>
+          </Box>
+        </Card>
+      </Box>
+    )}
+  </>;
+}
