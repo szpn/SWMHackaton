@@ -1,10 +1,11 @@
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import {DataGrid, GridColDef, GridEventListener} from '@mui/x-data-grid';
 import { AttractionShortType } from "../types/AttractionShortType"
 import { useEffect, useState } from "react";
 import { Autocomplete, MenuItem, Select, Stack, TextField } from "@mui/material";
 import AddPlaceForm from "./AddPlaceForm";
 import TopBar from "./Bar";
 import MakeMap from "./MakeMap";
+import {useNavigate} from "react-router-dom";
 
 
 const cols: GridColDef[] = [
@@ -34,6 +35,7 @@ const cols: GridColDef[] = [
     }
 ];
 
+
 export default function AttractionsList() {
     const url = `${process.env.REACT_APP_API_URL}/place/`;
     const [data, setData] = useState<AttractionShortType[]>([]);
@@ -43,6 +45,7 @@ export default function AttractionsList() {
     const rows = data.filter(e => (e.type_name == category || category == 'All') && (name == null || e.name == name))
 
     const availableTypes: string[] = Array.from(new Set(data.map(e => e.type_name)))
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -57,6 +60,15 @@ export default function AttractionsList() {
         };
         fetchData();
     }, [url]);
+
+    const handleClick: GridEventListener<'rowClick'> = (
+        params
+    ) => {
+        const clicked_id = params.id;
+        navigate(`/place/${clicked_id}/`)
+        console.log(clicked_id);
+    };
+
     return <>
         <TopBar />
         <div style={{
@@ -102,6 +114,7 @@ export default function AttractionsList() {
                     <DataGrid
                         rows={rows}
                         columns={cols}
+                        onRowClick={handleClick}
                         disableRowSelectionOnClick
                     />
                     <AddPlaceForm />
