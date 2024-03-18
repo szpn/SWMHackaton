@@ -13,11 +13,12 @@ import logo from '../logo.jpg'
 function ResponsiveAppBar() {
 
   return (
-    <AppBar position="sticky" sx={{ bgcolor: 'black' }} >
+    <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <a href="/">
-            <img src={logo} width={64} height={64} style={{ padding: '10px', borderRadius: '50%'}} />
+            <img src={logo} width={64} height={64} style={{ padding: '10px', borderRadius: '50%' }} />
           </a>
           <Typography
             variant="h6"

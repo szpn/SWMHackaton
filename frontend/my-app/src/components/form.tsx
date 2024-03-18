@@ -10,8 +10,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 export default function AddPlaceForm() {
   const [open, setOpen] = React.useState(false);
