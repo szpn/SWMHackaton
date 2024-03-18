@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import TopBar from "./TopBar";
 import MakeMap from "./MakeMap";
 
+
 const cols: GridColDef[] = [
     {
         field: 'name',
@@ -23,13 +24,13 @@ const cols: GridColDef[] = [
         field: 'address',
         headerName: 'Address',
         type: "string",
-        width: 400,
+        width: 300,
     },
     {
         field: 'short_description',
         headerName: 'Description',
         type: 'string',
-        width: 500,
+        width: 400,
     },
     {
         field: 'type_name',

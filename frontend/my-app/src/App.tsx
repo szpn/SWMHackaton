@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import AttractionsList from './components/AttractionsList';
 import {
   createBrowserRouter,
