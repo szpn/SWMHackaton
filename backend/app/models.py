@@ -56,7 +56,7 @@ class MapPlace(db.Model):
             'contact_phone': self.contact_phone,
             'contact_link': self.contact_link,
             'type_name': self.place_type.name if self.place_type else None,
-            'average_rating': avg_rating
+            'average_rating': avg_rating if avg_rating else 5
         }
 
 
