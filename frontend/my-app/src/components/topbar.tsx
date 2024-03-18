@@ -4,8 +4,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import logo from '../logo.jpg'
 
-function TopBar() {
 
+export default function TopBar() {
   return (
     <AppBar position="sticky" sx={{ bgcolor: 'black' }} >
       <Container maxWidth="xl">
@@ -36,4 +36,3 @@ function TopBar() {
     </AppBar>
   );
 }
-export default TopBar;

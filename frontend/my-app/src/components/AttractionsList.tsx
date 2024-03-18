@@ -3,7 +3,7 @@ import { AttractionShortType } from "../types/AttractionShortType"
 import { useEffect, useState } from "react";
 import { Autocomplete, MenuItem, Select, Stack, TextField } from "@mui/material";
 import AddPlaceForm from "./AddPlaceForm";
-import ResponsiveAppBar from "./TopBar";
+import TopBar from "./TopBar";
 import { Link } from "react-router-dom";
 import MakeMap from "./MakeMap";
 
@@ -60,61 +60,58 @@ export default function AttractionsList() {
                 console.error("Error fetching data: ", error);
             }
         };
-
         fetchData();
     }, [url]);
     return <>
-        <ResponsiveAppBar />
+        <TopBar />
         <div style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '100vh'
+            height: '100vh',
+            width: "60%"
         }}>
-            <div style={{ width: '60%' }}>
-                <Stack spacing={4}>
-                    <MakeMap />
-                    <Stack direction="row" spacing={2}>
-                        <Autocomplete
-                            sx={{ width: "50%" }}
-                            options={data.map(e => e.name)}
-                            value={name}
-                            renderInput={(params) => <TextField {...params} label="Name" />}
-                            onChange={(event: any, newValue: string | null) => {
-                                setName(newValue);
-                            }}
-                        />
-
-                        <Select
-                            value={category}
-                            sx={{ width: "50%" }}
-                            onChange={(e) => setCategory(e.target.value)}
-                        >
-                            <MenuItem
-                                key="All"
-                                value="All"
-                            >
-                                All
-                            </MenuItem>
-                            {availableTypes.map((name) => (
-                                <MenuItem
-                                    key={name}
-                                    value={name}
-                                >
-                                    {name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </Stack>
-                    <DataGrid
-                        rows={rows}
-                        columns={cols}
-                        disableRowSelectionOnClick
+            <Stack spacing={4}>
+                <MakeMap />
+                <Stack direction="row" spacing={2}>
+                    <Autocomplete
+                        sx={{ width: "50%" }}
+                        options={data.map(e => e.name)}
+                        value={name}
+                        renderInput={(params) => <TextField {...params} label="Name" />}
+                        onChange={(event: any, newValue: string | null) => {
+                            setName(newValue);
+                        }}
                     />
-                    <AddPlaceForm />
-                    {/* <img src = "https://media.discordapp.net/attachments/1120592308816072764/1218619692118179890/image.png?ex=66085307&is=65f5de07&hm=0a1fcac27da3728cb856973593da3702a4f2053baa03d7cd71dc29cdb95c8b59&=&format=webp&quality=lossless&width=1128&height=676" /> */}
+
+                    <Select
+                        value={category}
+                        sx={{ width: "50%" }}
+                        onChange={(e) => setCategory(e.target.value)}
+                    >
+                        <MenuItem
+                            key="All"
+                            value="All"
+                        >
+                            All
+                        </MenuItem>
+                        {availableTypes.map((name) => (
+                            <MenuItem
+                                key={name}
+                                value={name}
+                            >
+                                {name}
+                            </MenuItem>
+                        ))}
+                    </Select>
                 </Stack>
-            </div>
+                <DataGrid
+                    rows={rows}
+                    columns={cols}
+                    disableRowSelectionOnClick
+                />
+                <AddPlaceForm />
+            </Stack>
         </div>
     </>;
 }

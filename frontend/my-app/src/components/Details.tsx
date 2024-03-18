@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { AttractionDetailsType } from '../types/AttractionDetailsType';
-import ResponsiveAppBar from './TopBar';
+import TopBar from './TopBar';
 
 
 export default function DetailsCard(params: { id?: string }) {
@@ -43,7 +43,7 @@ export default function DetailsCard(params: { id?: string }) {
     fetchData();
   }, [url]);
   return <>
-    <ResponsiveAppBar />
+    <TopBar />
     {data && value !== null && (
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh" height="60%">
         <Card sx={{ width: '60%', maxWidth: '80%', height: '80%', display: 'flex', flexDirection: 'row' }}>

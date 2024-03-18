@@ -45,7 +45,6 @@ export default function AddPlaceForm() {
 
   const url = "http://192.168.123.92:5000/type/";
 
-
   return (
     <>
       <Button variant="outlined" onClick={handleClickOpen}>
