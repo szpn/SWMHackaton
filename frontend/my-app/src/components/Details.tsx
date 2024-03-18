@@ -11,7 +11,7 @@ import ResponsiveAppBar from './TopBar';
 
 export default function DetailsCard(params: { id?: string }) {
   const [value, setValue] = useState<number>();
-  const url = `http://192.168.123.92:5000/place/${params.id}/`;
+  const url = `${process.env.REACT_APP_API_URL}/place/${params.id}/`;
   const [data, setData] = useState<AttractionDetailsType | null>(null);
   const [name, setName] = useState<string | null>('');
   const [long_description, setLongDescription] = useState<string | null>('')
@@ -85,7 +85,7 @@ export default function DetailsCard(params: { id?: string }) {
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({ "place_id": params.id, "rating": newValue })
                     };
-                    fetch('http://192.168.123.92:5000/add_rating/', requestOptions)
+                    fetch(`${process.env.REACT_APP_API_URL}/add_rating/`, requestOptions)
                       .then(response => response.json())
                       .then(data => {
                         setValue(data['avg_rating'])

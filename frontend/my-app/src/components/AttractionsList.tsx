@@ -40,7 +40,7 @@ const cols: GridColDef[] = [
 ];
 
 export default function AttractionsList() {
-    const url = `http://192.168.123.92:5000/place/`;
+    const url = `${process.env.REACT_APP_API_URL}/place/`;
     const [data, setData] = useState<AttractionShortType[]>([]);
     const [name, setName] = useState<string | null>()
     const [category, setCategory] = useState<string>('All')

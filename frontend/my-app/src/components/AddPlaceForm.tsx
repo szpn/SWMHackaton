@@ -23,7 +23,7 @@ export default function AddPlaceForm() {
 
   const handleGetProducts = async () => {
     try {
-      const response = await fetch('http://192.168.123.92:5000/type/');
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/type/`);
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -42,7 +42,6 @@ export default function AddPlaceForm() {
     setType(event.target.value);
   };
 
-  const url = "http://192.168.123.92:5000/type/";
 
   return (
     <>
@@ -63,7 +62,7 @@ export default function AddPlaceForm() {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(formJson)
             };
-            fetch('http://192.168.123.92:5000/add_place/', requestOptions)
+            fetch(`${process.env.REACT_APP_API_URL}/add_place/`, requestOptions)
               .then(response => response.json())
               .then(data => console.log(data))
               .catch(err => console.log(err))
