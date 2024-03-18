@@ -1,7 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useEffect, useState } from "react";
 
-
 export default function MakeMap() {
     const [places, setPlaces] = useState([]);
 
