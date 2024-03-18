@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 import { Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { AttractionDetailsType } from '../types/AttractionDetailsType';
-import TopBar from './TopBar';
+import TopBar from './Bar';
 
 
 export default function DetailsCard(params: { id?: string }) {

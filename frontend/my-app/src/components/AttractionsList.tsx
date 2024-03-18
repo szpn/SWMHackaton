@@ -1,10 +1,9 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid"
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { AttractionShortType } from "../types/AttractionShortType"
 import { useEffect, useState } from "react";
 import { Autocomplete, MenuItem, Select, Stack, TextField } from "@mui/material";
 import AddPlaceForm from "./AddPlaceForm";
-import { Link } from "react-router-dom";
-import TopBar from "./TopBar";
+import TopBar from "./Bar";
 import MakeMap from "./MakeMap";
 
 
@@ -13,12 +12,7 @@ const cols: GridColDef[] = [
         field: 'name',
         headerName: 'Name',
         type: "string",
-        width: 250,
-        renderCell: (params) => (
-            <Link to={`/place/${params.row.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                {params.value}
-            </Link>
-        )
+        width: 250
     },
     {
         field: 'address',
