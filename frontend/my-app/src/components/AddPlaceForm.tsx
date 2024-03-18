@@ -10,28 +10,26 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 export default function AddPlaceForm() {
-  const [open, setOpen] = React.useState(false);
-  const [address, setAddress] = React.useState("");
-  const [type, setType] = React.useState("");
+  const [open, setOpen] = useState(false);
+  const [address, setAddress] = useState("");
+  const [type, setType] = useState("");
 
 
   const [products, setProducts] = useState([]);
-    useEffect(() => {
-        handleGetProducts();
-    }, []);
+  useEffect(() => {
+    handleGetProducts();
+  }, []);
 
-    const handleGetProducts = async () => {
-      try {
-          const response = await fetch('http://192.168.123.92:5000/type/');
-          const data = await response.json();
-          setProducts(data);
-      } catch (error) {
-          console.error('Error fetching products:', error);
-      }
+  const handleGetProducts = async () => {
+    try {
+      const response = await fetch('http://192.168.123.92:5000/type/');
+      const data = await response.json();
+      setProducts(data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -40,7 +38,7 @@ export default function AddPlaceForm() {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const handleChange = (event: SelectChangeEvent) => {
     setType(event.target.value);
   };
@@ -66,19 +64,19 @@ export default function AddPlaceForm() {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify(formJson)
-          };
-          fetch('http://192.168.123.92:5000/add_place/', requestOptions)
-          .then(response => response.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err))
-          handleClose();
+            };
+            fetch('http://192.168.123.92:5000/add_place/', requestOptions)
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(err => console.log(err))
+            handleClose();
           },
         }}
       >
         <DialogTitle>Add new place form
-        <DialogContentText style={{minWidth: '500px'}}>
+          <DialogContentText style={{ minWidth: '500px' }}>
             Give some information about place.
-        </DialogContentText>
+          </DialogContentText>
         </DialogTitle>
         <DialogContent>
           <TextField
@@ -94,7 +92,6 @@ export default function AddPlaceForm() {
           />
           <TextField
             required
-            
             margin="dense"
             id="name"
             name="address"
@@ -103,23 +100,23 @@ export default function AddPlaceForm() {
             fullWidth
             variant="standard"
           />
-      <FormControl sx={{ m: 1, minWidth: 200,display: 'flex',justifyContent: 'center' }}>
-        <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-autowidth-label"
-          id="demo-simple-select-autowidth"
-          value={type}
-          name="type_id"
-          onChange={handleChange}
-          autoWidth
-          label="Age"
-          required
-        >
-          {products.map((product) => (
-                    <MenuItem value={product['id']}>{product['name']}</MenuItem>
-                ))}
-        </Select>
-      </FormControl>
+          <FormControl sx={{ m: 1, minWidth: 200, display: 'flex', justifyContent: 'center' }}>
+            <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={type}
+              name="type_id"
+              onChange={handleChange}
+              autoWidth
+              label="Age"
+              required
+            >
+              {products.map((product) => (
+                <MenuItem value={product['id']}>{product['name']}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             required
             margin="dense"
@@ -178,7 +175,7 @@ export default function AddPlaceForm() {
             fullWidth
             variant="standard"
           />
-      </DialogContent>
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button type="submit">Subscribe</Button>
