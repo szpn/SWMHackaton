@@ -6,7 +6,7 @@ export default function MakeMap() {
     const [places, setPlaces] = useState([]);
 
     useEffect(() => {
-        fetch('http://192.168.123.92:5000/place/')
+        fetch(`${process.env.REACT_APP_API_URL}/place/`)
             .then(response => response.json())
             .then(data => setPlaces(data))
             .catch(error => console.error('Error fetching data:', error));
